@@ -1,0 +1,62 @@
+$breakpoint-tablet: 768px;
+
+.container {
+  display: flex;
+}
+
+.h1 {
+  font-family: "monotonregular";
+  text-align: left;
+  margin: 0;
+
+  color: red;
+
+  @media (pointer: fine) {
+    /* Rules for devices with mouse here */
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.nav > ul {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.nav > ul > li {
+  width: 100%;
+  a {
+    color: black;
+  }
+  @media (pointer: fine) {
+    a:hover {
+      color: white;
+    }
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
+
+  li {
+    list-style: none;
+  }
+  a {
+    color: black;
+  }
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .nav > ul {
+    flex-direction: row;
+
+    > li {
+      margin-left: 48px;
+    }
+  }
+}

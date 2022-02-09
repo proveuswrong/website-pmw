@@ -1,0 +1,20 @@
+$breakpoint-tablet: 768px;
+
+.centeredText {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.h1 {
+  font-family: "monotonregular";
+  white-space: break-spaces;
+  align-self: center;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .h1 {
+    width: 240px;
+    align-self: center;
+  }
+}

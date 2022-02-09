@@ -1,0 +1,220 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+
+@font-face {
+  font-family: "monotonregular";
+  src: url("monoton-regular-webfont.woff2") format("woff2"),
+    url("monoton-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "monotonregular";
+  color: black;
+}
+
+$palette: (
+  blue: #22678c,
+  lightBlue: #23778c,
+  lighterBlue: #48525c,
+  yellow: #ffa949,
+  lightYellow: #eda2fc,
+);
+
+a {
+  color: #2904bd;
+
+  &:hover {
+    color: pink;
+  }
+}
+
+* {
+  transition-property: color background-color opacity;
+  transition-duration: 0.2s;
+}
+
+main h1,
+h2,
+a {
+  transition-duration: 0.05s;
+}
+:root {
+  font-size: 20px;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  margin-top: 0;
+}
+
+header a {
+  text-decoration: none;
+}
+
+$breakpoint-tablet: 768px;
+
+svg {
+  max-height: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  // background: url("/subtle-prism.svg") repeat;
+  height: 100vh;
+  height: -webkit-fill-available;
+  height: 100%;
+}
+
+body > div:first-child {
+  height: inherit;
+}
+
+main {
+  height: auto;
+  margin: auto;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+header,
+main,
+footer {
+  > div:first-child {
+    min-width: auto;
+    margin: 16px 16px;
+    margin-bottom: 0px;
+    text-align: center;
+  }
+}
+
+#main {
+  > div:first-child {
+    flex-direction: column;
+    margin: 0 calc(8px + 10vw);
+    // height: 80vh;
+  }
+}
+
+footer {
+  align-self: center;
+  padding-bottom: 8px;
+  width: 100%;
+
+  svg {
+    max-width: 35px;
+    height: 20px;
+    margin: 0 8px;
+  }
+}
+
+#gatsby-focus-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+li {
+  font-family: "Space Mono", monospace;
+}
+
+.hero {
+  font-size: 28px;
+}
+
+h1 {
+  font-family: "Space Mono", monospace;
+  font-size: 24px;
+  font-weight: normal;
+}
+
+h2 {
+  font-family: "Space Mono", monospace;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+p {
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  font-weight: 100;
+}
+
+small {
+  font-family: "Space Mono", monospace;
+
+  font-size: 13px;
+}
+
+header * {
+  font-size: 21px;
+}
+
+nav {
+  font-family: "Space Mono", monospace;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  main {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  header,
+  main,
+  footer {
+    > div:first-child {
+      min-width: auto;
+      margin: 16px 32px;
+      margin-bottom: 0px;
+    }
+  }
+
+  .hero {
+    font-size: 44px;
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: normal;
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: normal;
+  }
+
+  p {
+    font-size: 22px;
+    font-weight: 100;
+  }
+
+  small {
+    font-size: 22px;
+  }
+
+  header * {
+    font-size: 28px;
+  }
+
+  footer {
+    padding-bottom: 16px;
+
+    svg {
+      max-width: 53px;
+      height: 32px;
+    }
+  }
+}
