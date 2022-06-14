@@ -1,81 +1,32 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import { Link } from "gatsby";
 import * as styles from "./footer.module.scss";
 import Github from "../images/github.svg";
 import Twitter from "../images/twitter.svg";
-
-const handleGithubMouseEnter = (e) => {
-  if (matchMedia("(pointer:fine)").matches) {
-    document.bgColor = "black";
-    if (document.getElementById("slogan"))
-      document.getElementById("slogan").style.color = "white";
-    if (window.location.pathname != "/")
-      document.getElementById("main").style.opacity = "0";
-    document.getElementById("github").lastChild.style.fill = "white";
-    document.getElementById("twitter").style.opacity = "0";
-  }
-};
-
-const handleGithubMouseLeave = (e) => {
-  if (matchMedia("(pointer:fine)").matches) {
-    document.bgColor = "white";
-    if (document.getElementById("slogan"))
-      document.getElementById("slogan").style.color = "black";
-    if (window.location.pathname != "/")
-      document.getElementById("main").style.opacity = "100";
-    document.getElementById("github").lastChild.style.fill = "black";
-    document.getElementById("twitter").style.opacity = "100";
-  }
-};
-
-const handleTwitterMouseEnter = (e) => {
-  if (matchMedia("(pointer:fine)").matches) {
-    document.bgColor = "black";
-    if (document.getElementById("slogan"))
-      document.getElementById("slogan").style.color = "white";
-    if (window.location.pathname != "/")
-      document.getElementById("main").style.opacity = "0";
-    document.getElementById("twitter").lastChild.style.fill = "white";
-    document.getElementById("github").style.opacity = "0";
-  }
-};
-
-const handleTwitterMouseLeave = (e) => {
-  if (matchMedia("(pointer:fine)").matches) {
-    document.bgColor = "white";
-    if (document.getElementById("slogan"))
-      document.getElementById("slogan").style.color = "black";
-    if (window.location.pathname != "/")
-      document.getElementById("main").style.opacity = "100";
-    document.getElementById("twitter").lastChild.style.fill = "black";
-    document.getElementById("github").style.opacity = "100";
-  }
-};
+import LinkedIn from "../images/linkedin.svg";
 
 const Footer = () => (
   <footer>
-    <div>
-      <small>
+    <div className={styles.container}>
+      <div className={styles.social}>
         <a
-          href="https://github.com/proveuswrong"
+          href="https://github.com/proveuswrong/webapp-pmw"
           target="_blank"
-          rel="noopener nodereferrer"
-          onMouseEnter={handleGithubMouseEnter}
-          onMouseLeave={handleGithubMouseLeave}
+          rel="noopener noreferrer"
         >
-          <Github id="github" />
+          <span style={{ display: "none" }}>Link to GitHub profile</span>
+          <Github aria-hidden="true" id="github" />
         </a>
+
         <a
-          href="https://twitter.com/ProveUsWrongIO"
+          href="https://twitter.com/ProveMeWrongIO"
           target="_blank"
-          rel="noopener nodereferrer"
-          onMouseEnter={handleTwitterMouseEnter}
-          onMouseLeave={handleTwitterMouseLeave}
+          rel="noopener noreferrer"
         >
-          <Twitter id="twitter" />
+          <span style={{ display: "none" }}>Link to Twitter profile</span>
+          <Twitter aria-hidden="true" id="twitter" />
         </a>
-      </small>
+      </div>
+      <small>Copyright {new Date().getFullYear()} Prove Us Wrong</small>
     </div>
   </footer>
 );

@@ -1,17 +1,14 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
+import * as React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
+import { useEffect, useState } from "react";
 
-import * as React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+const constructUrl = (baseUrl, path) =>
+  !baseUrl || !path ? null : `${baseUrl}${path}`;
 
-function Seo({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+function Seo({ description, lang, meta, title, customImageUrl, imageAlt }) {
+  const { ogImageDefault, site } = useStaticQuery(
     graphql`
       query {
         site {
@@ -19,14 +16,28 @@ function Seo({ description, lang, meta, title }) {
             title
             description
             author
+            siteUrl
+          }
+        }
+        ogImageDefault: file(relativePath: { eq: "icon.png" }) {
+          childImageSharp {
+            fixed(height: 260, width: 260) {
+              src
+            }
           }
         }
       }
     `
-  )
+  );
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const [actualURL, setActualURL] = useState();
+
+  useEffect(() => {
+    setActualURL(window.location.href);
+  }, []); // Not working
+
+  const metaDescription = description || site.siteMetadata.description;
+  const defaultTitle = site.siteMetadata?.title;
 
   return (
     <Helmet
@@ -42,7 +53,7 @@ function Seo({ description, lang, meta, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: defaultTitle,
         },
         {
           property: `og:description`,
@@ -53,37 +64,51 @@ function Seo({ description, lang, meta, title }) {
           content: `website`,
         },
         {
-          name: `twitter:card`,
-          content: `summary`,
+          property: `og:url`,
+          content: actualURL || site.siteMetadata.siteUrl,
+        },
+        {
+          name: `og:image`,
+          content:
+            customImageUrl ||
+            constructUrl(
+              actualURL || site.siteMetadata.siteUrl,
+              ogImageDefault?.childImageSharp?.fixed?.src
+            ),
         },
         {
           name: `twitter:creator`,
           content: site.siteMetadata?.author || ``,
         },
         {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
           name: `twitter:description`,
           content: metaDescription,
         },
+
+        {
+          name: `twitter:card`,
+          content: customImageUrl ? `summary_large_image` : `summary`,
+        },
+        {
+          name: `twitter:image:alt`,
+          content: imageAlt || defaultTitle,
+        },
       ].concat(meta)}
     />
-  )
+  );
 }
 
 Seo.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
-}
+};
 
 Seo.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
-}
+};
 
-export default Seo
+export default Seo;

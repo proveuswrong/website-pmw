@@ -1,59 +1,65 @@
 import * as React from "react";
+import { useRef } from "react";
+import { useEffect } from "react";
+
 import PropTypes from "prop-types";
+
+import Hamburger from "./hamburger";
+import useMediaQuery from "./hooks/useMediaQuery";
+
 import { Link } from "gatsby";
 import * as styles from "./header.module.scss";
 
-const handleMouseEnter = (e) => {
-  if (matchMedia("(pointer:fine)").matches) {
-    document.bgColor = "black";
-    document.getElementById("brand").style.color = "white";
-    if (document.getElementById("slogan"))
-      document.getElementById("slogan").style.color = "white";
-    if (window.location.pathname != "/")
-      document.getElementById("main").style.opacity = "0";
-  }
+const breakpointTablet = 768;
+
+const Header = ({ siteTitle }) => {
+  const home = useRef(null);
+  const readme = useRef(null);
+  const app = useRef(null);
+
+  useEffect(() => {
+    window.location.pathname == "/" && home.current.classList.add("grayed-out");
+    window.location.pathname == "/readme/" &&
+      readme.current.classList.add("grayed-out");
+    window.location.pathname == "/app/" &&
+      app.current.classList.add("grayed-out");
+  }, []);
+
+  const isNarrow = useMediaQuery(`(max-width: ${breakpointTablet}px)`);
+
+  return (
+    <>
+      <header>
+        <div className={styles.container}>
+          <Link to="/">
+            <h1 id="brand" className={styles.h1}>
+              Prove <br /> Me <br /> Wrong
+            </h1>
+          </Link>
+          {isNarrow && <Hamburger className={styles.hamburger} />}
+          <div className={styles.overlay} id="overlay">
+            <nav className={`${styles.nav} overlay-menu`}>
+              <h1 style={{ display: "none" }}>Navigation</h1>
+              <ul>
+                <li ref={home}>
+                  <Link to="/">HOME</Link>
+                </li>
+
+                <li ref={readme}>
+                  <Link to="/readme/">README</Link>
+                </li>
+
+                <li ref={app}>
+                  <Link to="/app/">APP</Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+    </>
+  );
 };
-
-const handleMouseLeave = (e) => {
-  document.bgColor = "white";
-  if (document.getElementById("slogan"))
-    document.getElementById("slogan").style.color = "black";
-  document.getElementById("brand").style.color = "red";
-  if (window.location.pathname != "/")
-    document.getElementById("main").style.opacity = "100";
-};
-
-const Header = ({ siteTitle }) => (
-  <header>
-    <div className={styles.container}>
-      <Link to="/">
-        <h1
-          id="brand"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className={styles.h1}
-        >
-          PROVE <br /> US <br /> WRONG
-        </h1>
-      </Link>
-
-      <nav className={styles.nav}>
-        <ul>
-          <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <a href="/">HOME</a>
-          </li>
-          <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <a href="/projects">PROJECTS</a>
-          </li>
-
-          <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <a href="/about">ABOUT</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-);
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

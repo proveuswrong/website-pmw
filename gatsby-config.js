@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Prove Me Wrong`,
-    description: `A curated list of truth with decentralized fact checking powered by Kleros. Claim something. Put a bounty. Invite other to prove you wrong.`,
-    author: `@ferittuncer`,
+    description: `Claim Something. Put a Bounty. Invite Others to Prove You Wrong.`,
+    author: `@0xferit`,
     siteUrl: `https://provemewrong.io/`,
   },
   plugins: [
@@ -17,8 +17,16 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `markdown-pages`,
+        path: `${__dirname}/src/readme`,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-remark`,
     {
       resolve: "gatsby-plugin-react-svg",
       options: {
@@ -30,13 +38,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Prove Us Wrong`,
+        short_name: `PUW`,
         start_url: `/`,
-        background_color: `#663399`,
+        background_color: "#171717",
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
+        theme_color: "#171717",
         display: `minimal-ui`,
         icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },

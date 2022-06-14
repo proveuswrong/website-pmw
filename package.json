@@ -1,9 +1,9 @@
 {
-  "name": "prove-us-wrong",
+  "name": "prove-me-wrong",
   "private": true,
-  "description": "The website of the organization.",
+  "description": "The website of Prove Me Wrong project.",
   "version": "1.0.0",
-  "author": "Ferit Tunçer <0xferittuncer@gmail.com>",
+  "author": "0xferit",
   "dependencies": {
     "gatsby": "^4.6.0",
     "gatsby-plugin-gatsby-cloud": "^4.6.0",
@@ -15,7 +15,8 @@
     "gatsby-plugin-robots-txt": "^1.7.0",
     "gatsby-plugin-sass": "^5.6.0",
     "gatsby-plugin-sharp": "^4.6.0",
-    "gatsby-source-filesystem": "^4.6.0",
+    "gatsby-source-filesystem": "^4.16.0",
+    "gatsby-transformer-remark": "^5.16.0",
     "gatsby-transformer-sharp": "^4.6.0",
     "prop-types": "^15.8.0",
     "react": "^17.0.1",

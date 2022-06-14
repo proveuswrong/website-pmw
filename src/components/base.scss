@@ -1,0 +1,156 @@
+$palette: (
+  black: #171717,
+  red: #ff355e,
+  white: #ececec,
+  gray: #727272,
+);
+
+@mixin generate($prefix, $property) {
+  // List of sizes to generate for each
+  $sizes: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5];
+  // Spacing to multiply the sizes by
+  $spacing: 1rem;
+
+  // Loop through all of the sizes(we use @for rather than @each, as we want access to the index)
+  @for $i from 1 through length($sizes) {
+    // Get the size for the current index
+    $size: nth($sizes, $i);
+
+    // Create the rule
+    .#{$prefix}-#{$i - 1} {
+      #{$property}: $spacing * $size;
+    }
+  }
+}
+
+html {
+  @include generate(mt, margin-top);
+}
+
+.t-center {
+  text-align: center;
+}
+
+/* Focusing with a keyboard.*/
+*:focus-visible {
+  outline: 2px dashed map-get($palette, white);
+}
+
+/* Focusing the button with a mouse, touch, or stylus.*/
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.grayed-out {
+  text-decoration: underline;
+  pointer-events: none;
+}
+
+body {
+  caret-color: transparent;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+* {
+  transition-property: color background-color opacity;
+  transition-duration: 0.1s;
+}
+
+main h1,
+h2,
+a {
+  transition-duration: 0.05s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    color: map-get($palette, red);
+  }
+
+  &:hover svg {
+    path,
+    circle,
+    rect {
+      fill: map-get($palette, red) !important;
+    }
+  }
+}
+
+main {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    a[href]:not(:where(
+  [href^="#"],
+  [href^="/"]:not([href^="//"])
+)) {
+      &:hover {
+        color: map-get($palette, red) !important;
+      }
+
+      &::after,
+      &:hover::after {
+        display: inline-table;
+        vertical-align: text-bottom;
+        width: 0.7em;
+        height: auto;
+        margin-left: 0.4em;
+      }
+      &:after {
+        content: url(/link.svg);
+      }
+      &:hover::after {
+        content: url(/linkRed.svg);
+      }
+    }
+  }
+}
+
+a.hero {
+  width: min-content;
+  white-space: nowrap;
+  align-self: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem !important;
+  border: 2px solid map-get($palette, white);
+  border-radius: 4px;
+
+  padding: 0.6em 2.2em;
+
+  background-image: linear-gradient(90deg, #ff355e, #ff355e, #827bd3, #90eed0);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: " ";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: map-get($palette, black);
+    z-index: -1;
+  }
+}
+
+footer {
+  small {
+    color: map-get($palette, gray) !important;
+  }
+  svg path {
+    fill: map-get($palette, gray) !important;
+  }
+}
