@@ -9,7 +9,7 @@ const Footer = () => (
     <div className={styles.container}>
       <div className={styles.social}>
         <a
-          href="https://github.com/proveuswrong/webapp-pmw"
+          href="https://github.com/proveuswrong"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -18,7 +18,7 @@ const Footer = () => (
         </a>
 
         <a
-          href="https://twitter.com/ProveMeWrongIO"
+          href="https://twitter.com/ProveUsWrongIO"
           target="_blank"
           rel="noopener noreferrer"
         >

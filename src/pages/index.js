@@ -29,12 +29,12 @@ const IndexPage = () => {
       <Seo title="Home" />
       <div className={styles.index}>
         <h1 id="slogan" className={`hero ` + styles.h1}>
-          Claim Something. <br/>Put a Bounty. <br/>Invite Others to Prove You Wrong.
+          We are cooking something cool. Please wait...
         </h1>
 
-        <Link to="/readme/" className="hero mt-3">
-          What?
-        </Link>
+        <a href='https://proveuswrong.io' className="hero mt-3">
+          Who is <i>we</i>?
+        </a>
       </div>
     </Layout>
   );
